@@ -1,0 +1,26 @@
+{
+  "name": "hop-qa",
+  "version": "1.0.0",
+  "description": "The goal of this challenge is to assess that, given a pre-developed application composed by a front-end UI and back-end API, you: - are able to create a test environment using tools Hopin currently uses, such as Git, npm and node.js; - are able to build API level automated tests scenarios using a test framework such as mocha (or any other of you choice) and a library to make API calls such as axios (or any other of you choice); and - are able to build UI level automated tests scenarios using a test framework such as mocha (or any other of you choice) and an UI automation tool such as Selenium (or any other of you choice). - are able to create CI pipelines that can run your tests effectively.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@bahmutov/cy-api": "^1.4.3",
+    "@cypress/schema-tools": "^4.7.7",
+    "cypress": "^6.3.0",
+    "dayjs": "^1.10.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicusbass/hop-qa.git"
+  },
+  "author": "Vasile Pop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vicusbass/hop-qa/issues"
+  },
+  "homepage": "https://github.com/vicusbass/hop-qa#readme"
+}
