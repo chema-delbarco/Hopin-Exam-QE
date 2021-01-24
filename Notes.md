@@ -2,7 +2,7 @@ Assumptions:
 
 - Considering this project's purpose, the lack of security is acceptable (no real authentication, authorization for routes, etc.)
 - POST should not be used for reading data, GET should be used instead with query params. This would be a blocker issue in real life, but here I'll assume this is valid. 
-- API: It's not clear from requirement if `name` field is mandatory, we'll assume it is not and, when missing, all customers are returned in response
+- API: It's not clear from requirements if `name` field is mandatory, I'll assume it is, it doesn't make sense to provide the list of customers when there is no data about the user requesting it
 - API: Assuming test data always exists (here is in-memory, but we can always use a test fixture for database seeding in a real-world application, etc)
 
 

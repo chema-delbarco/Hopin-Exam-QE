@@ -50,7 +50,7 @@ const ConsumerSchema100 = {
                 description: 'List of customers',
             },
         },
-        required: ['timestamp', 'customers'],
+        required: ['timestamp', 'customers', 'name'],
         additionalProperties: false,
     },
     example: consumerSchema100,
