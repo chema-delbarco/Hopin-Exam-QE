@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
-import dayjs from 'dayjs';
 import { api } from '../../schemas';
+import { today } from '../../support/commands';
 
-const today = dayjs().format('ddd MMM DD YYYY');
 const username = 'Vasile Pop';
 
 //TODO DECIDE IF name should be mandatory
