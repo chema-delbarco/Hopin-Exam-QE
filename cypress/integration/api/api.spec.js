@@ -45,9 +45,15 @@ describe('Customer API', () => {
             })
         })
 
-        it('loads customers list for an empty user name', () => {
+        it('will not load customers for an empty user name', () => {
             cy.api({ url: '/', method: 'POST', body: { 'name': '' } }).then((res) => {
                 expect(res.status).to.equal(400, 'Empty user name');
+            })
+        })
+
+        it('will not load customers invalid user name', () => {
+            cy.api({ url: '/', method: 'POST', body: { 'name': 123 } }).then((res) => {
+                expect(res.status).to.equal(400, 'Invalid user name');
             })
         })
 
