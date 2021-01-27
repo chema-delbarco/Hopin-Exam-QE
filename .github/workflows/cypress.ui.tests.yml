@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install backend deps
+        run: npm run ci:backend
+      - name: Install frontend deps
         run: npm run ci:frontend
       - name: Cypress UI tests
         uses: cypress-io/github-action@v2
