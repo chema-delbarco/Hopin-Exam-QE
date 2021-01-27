@@ -23,8 +23,7 @@ jobs:
         env:
           CYPRESS_BASE_URL: http://localhost:3001
         with:
-          start: node backend/server.js
-          wait-on: "http://localhost:3001"
+          command: npm run test:api
           spec: cypress/integration/api-tests/api.spec.js
           record: true
       # save artefacts
