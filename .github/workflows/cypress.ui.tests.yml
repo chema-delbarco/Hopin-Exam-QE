@@ -1,0 +1,45 @@
+name: UI tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install backend deps
+        run: npm run ci:backend
+      - name: Install frontend deps
+        run: npm run ci:frontend
+      - name: Cypress UI tests
+        uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_BASE_URL: http://localhost:3000
+        with:
+          command: npm run test:ui:headless
+          record: true
+      # save artefacts
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: mocha-reports
+          path: mochawesome-report
