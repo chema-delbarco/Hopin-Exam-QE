@@ -15,6 +15,7 @@
   },
   "scripts": {
     "ci:backend": "cd backend && npm ci && cd -",
+    "ci:frontend": "cd frontend && npm ci && cd -",
     "start": "node backend/server.js",
     "start:frontend": "cd frontend && npm run start-no-reload && cd -",
     "cy:run:api": "CYPRESS_BASE_URL=http://localhost:3001 cypress run --reporter mochawesome --headless --spec cypress/integration/api-tests/api.spec.js",

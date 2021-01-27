@@ -1,4 +1,4 @@
-name: Test CI
+name: UI tests
 
 on:
   push:
@@ -16,15 +16,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run backend
-        run: npm run ci:backend
-      - name: Cypress API tests
+      - name: Install backend deps
+        run: npm run ci:frontend
+      - name: Cypress UI tests
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_BASE_URL: http://localhost:3001
+          CYPRESS_BASE_URL: http://localhost:3000
         with:
-          command: npm run test:api
-          spec: cypress/integration/api-tests/api.spec.js
+          command: npm run test:ui:headless
           record: true
       # save artefacts
       - uses: actions/upload-artifact@v2
