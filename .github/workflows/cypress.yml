@@ -1,0 +1,40 @@
+name: Test CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run backend
+        run: npm run ci:backend
+      - name: Cypress API tests
+        uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_BASE_URL: http://localhost:3001
+        with:
+          start: node backend/server.js
+          wait-on: "http://localhost:3001"
+          spec: cypress/integration/api-tests/api.spec.js
+          record: true
+      # save artefacts
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
