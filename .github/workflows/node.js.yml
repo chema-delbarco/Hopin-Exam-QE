@@ -22,4 +22,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: backend_ci
     - run: npm run test:api
