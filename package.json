@@ -8,10 +8,21 @@
     "@bahmutov/cy-api": "^1.4.3",
     "@cypress/schema-tools": "^4.7.7",
     "cypress": "^6.3.0",
-    "dayjs": "^1.10.4"
+    "dayjs": "^1.10.4",
+    "mochawesome": "^6.2.1",
+    "start-server-and-test": "^1.11.7",
+    "wait-on": "^5.2.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server.js",
+    "start:frontend": "cd frontend && npm run start-no-reload && cd -",
+    "cy:run:api": "CYPRESS_BASE_URL=http://localhost:3001 cypress run --reporter mochawesome --headless --spec cypress/integration/api-tests/api.spec.js",
+    "test:api": "start-server-and-test start 3001 cy:run:api",
+    "cy:run:ui": "CYPRESS_BASE_URL=http://localhost:3000 cypress run --reporter mochawesome --spec cypress/integration/ui-tests/ui.spec.js",
+    "cy:run:ui:headless": "npm run cy:run:ui -- --headless",
+    "cy:run:ui:headed:chrome": "npm run cy:run:ui -- --browser chrome --headed",
+    "test:ui:headless": "start-server-and-test start 3001 start:frontend 3000 cy:run:ui:headless",
+    "test:ui:chrome": "start-server-and-test start 3001 start:frontend 3000 cy:run:ui:headed:chrome"
   },
   "repository": {
     "type": "git",
