@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      max-parallel: 1
       matrix:
         node-version: [14.x]
 
