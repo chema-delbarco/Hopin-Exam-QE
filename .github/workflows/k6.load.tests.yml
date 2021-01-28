@@ -8,11 +8,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-
+        uses: actions/checkout@v2
+      - name: Install backend deps
+        run: npm run ci:backend
+      - name: Run backend
+        run: npm start
       - name: Run test
         uses: k6io/action@v0.1
         with:
           filename: performance-tests/perf-test.js
         env:
-          BASE_URL: http://host.docker.internal:3001
+          BASE_URL: http://localhost:3001
